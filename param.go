@@ -56,7 +56,7 @@ func (p *Parameter) BindValue(h api.SQLHSTMT, idx int, v driver.Value, conn *Con
 		buf = unsafe.Pointer(&b[0])
 		l := len(b)
 		l -= 1 // remove terminating 0
-		size = api.SQLULEN(l)
+		size = api.SQLULEN(len([]byte(d))) //api.SQLULEN(l)
 		if size < 1 {
 			// size cannot be less then 1 even for empty fields
 			size = 1
